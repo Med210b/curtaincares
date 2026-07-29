@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Tajawal:wght@700&family=Cairo:wght@400&display=swap');
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+@theme {
+  --font-serif: "Times New Roman", "Times", "Tajawal", serif;
+  --font-sans: "Inter", "Cairo", sans-serif;
+
+  --color-gold: #A6854D;
+  --color-gold-soft: #C5A36A;
+  --color-espresso: #120A05;
+  --color-beige: #E0C9A6;
+  --color-cream: #F8F3EB;
+  --color-dark-brown: #0D0502;
+
+  --radius-premium: 2rem;
+  --radius-button: 50px;
+}
+
+@layer base {
+  :root {
+    --radius-premium: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --radius-premium: 2rem;
+    }
+  }
+
+  body {
+    @apply bg-cream text-espresso font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/20 backdrop-blur-2xl border border-gold/20 shadow-xl;
+  }
+
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-2xl border border-white/10 shadow-2xl;
+  }
+
+  .gold-gradient {
+    background: linear-gradient(135deg, #A6854D, #C5A36A, #8B6B3F);
+  }
+
+  .gold-text-gradient {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(135deg, #A6854D, #C5A36A, #8B6B3F);
+  }
+
+  .gold-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gold-shine::after {
+    content: "";
+    @apply absolute top-0 -left-full w-full h-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: 0.5s;
+    animation: shine 3s infinite;
+  }
+
+  @keyframes shine {
+    0% { left: -100%; }
+    20% { left: 100%; }
+    100% { left: 100%; }
+  }
+}
+

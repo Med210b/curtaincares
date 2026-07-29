@@ -1,0 +1,6 @@
+{
+  "name": "Curtaincares",
+  "description": "Luxury curtain and fabric care for elegant homes, villas, and hotels.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
