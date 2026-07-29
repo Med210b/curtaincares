@@ -10,7 +10,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           node-version: 20
           cache: 'npm'
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build
         run: npm run build
       - name: Setup Pages
@@ -36,6 +36,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
+          # THIS IS THE MOST IMPORTANT LINE. IT MUST BE './dist'
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
