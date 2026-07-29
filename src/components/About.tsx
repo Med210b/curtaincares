@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { IMAGES } from "@/src/lib/constants";
 import { CheckCircle2 } from "lucide-react";
 import { useLanguage } from "@/src/context/LanguageContext";
 
@@ -36,7 +37,7 @@ export default function About() {
           >
             <div className="relative z-10 rounded-premium overflow-hidden aspect-[4/5]">
               <img
-                src="https://res.cloudinary.com/dlyhuwdrw/image/upload/v1785236158/d20qgqfyiofqjahvd30c.png"
+                src={IMAGES.hotel}
                 alt="Luxury Interior"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"

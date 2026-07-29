@@ -3,7 +3,7 @@ export const LOGO_URL = "https://res.cloudinary.com/dlyhuwdrw/image/upload/v1785
 export const IMAGES = {
   hero: "/src/assets/images/hero_luxury_interior_1783502029527.jpg",
   serviceFabric: "/src/assets/images/service_fabric_care_1783502042045.jpg",
-  hotel: "/src/assets/images/luxury_hotel_curtains_1783502055422.jpg",
+  hotel: "https://res.cloudinary.com/dlyhuwdrw/image/upload/v1785236158/d20qgqfyiofqjahvd30c.png",
 };
 
 export const CONTACT_INFO = {
