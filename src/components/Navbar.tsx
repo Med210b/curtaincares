@@ -45,28 +45,34 @@ export default function Navbar() {
           : "bg-white py-2 border-b border-gold/10 shadow-sm"
       )}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <Link to="/">
-            <motion.div
-            initial={{ opacity: 0, x: language === 'ar' ? 20 : -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className={cn(
-              "relative transition-all duration-500 group",
-              isScrolled ? "h-12 md:h-16 w-32 md:w-48 lg:h-20 lg:w-64" : "h-16 md:h-24 w-40 md:w-64 lg:h-32 lg:w-[400px]"
-            )}
-          >
-            <img
-              src={LOGO_URL}
-              alt="Curtaincares Logo"
-              className="h-full w-full object-contain transition-all duration-500 relative z-10"
-              referrerPolicy="no-referrer"
-            />
-          </motion.div>
-        </Link>
+      <div className="w-full max-w-full px-6 lg:px-[50px] flex items-center justify-between min-h-[80px] lg:min-h-[100px]">
+        {/* Left Section: Logo */}
+        <div className="flex-1 flex justify-start">
+          <Link to="/">
+              <motion.div
+              initial={{ opacity: 0, x: language === 'ar' ? 20 : -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className={cn(
+                "relative transition-all duration-500 group flex items-center",
+                isScrolled ? "h-12 md:h-16 w-32 md:w-48 lg:h-20 lg:w-64" : "h-16 md:h-24 w-40 md:w-64 lg:h-32 lg:w-[400px]"
+              )}
+            >
+              <img
+                src={LOGO_URL}
+                alt="Curtaincares Logo"
+                className="h-full w-full object-contain transition-all duration-500 relative z-10"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+          </Link>
+        </div>
 
-        {/* Desktop Menu */}
-        <nav className={`hidden lg:flex items-center ${language === 'ar' ? 'space-x-reverse space-x-6' : 'space-x-6'} flex-nowrap whitespace-nowrap`}>
+        {/* Center Section: Navigation Links */}
+        <nav className={cn(
+          "hidden lg:flex items-center justify-center flex-nowrap whitespace-nowrap px-4",
+          language === 'ar' ? "space-x-reverse space-x-[28px] xl:space-x-[36px]" : "space-x-[28px] xl:space-x-[36px]"
+        )}>
           {navLinks.map((link, i) => {
             const href = isHomePage ? link.href : `/${link.href}`;
             return (
@@ -76,39 +82,45 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * i, duration: 0.5 }}
-                className="text-sm font-medium transition-colors relative group text-gold hover:text-gold-soft"
+                className="text-sm font-medium transition-colors relative group text-gold hover:text-gold-soft py-2"
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full" />
               </motion.a>
             );
           })}
-          
-          <div className="flex items-center space-x-4 space-x-reverse">
+        </nav>
+
+        {/* Right Section: Language + CTA */}
+        <div className="flex-1 flex justify-end items-center">
+          <div className={cn(
+            "hidden lg:flex items-center",
+            language === 'ar' ? "space-x-reverse space-x-[10px] xl:space-x-[16px]" : "space-x-[10px] xl:space-x-[16px]"
+          )}>
             <LanguageSwitcherSimple />
             <motion.a
               href={isHomePage ? "#contact" : "/#contact"}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="px-5 py-2 rounded-button text-xs font-bold shadow-lg transition-all hover:-translate-y-0.5 active:translate-y-0 gold-gradient text-white hover:shadow-gold/30"
+              className="px-6 py-2.5 rounded-button text-xs font-bold shadow-lg transition-all hover:-translate-y-0.5 active:translate-y-0 gold-gradient text-white hover:shadow-gold/30 whitespace-nowrap"
             >
               {t('nav.book_now')}
             </motion.a>
           </div>
-        </nav>
 
-        {/* Mobile Toggle */}
-        <div className="lg:hidden flex items-center space-x-4 space-x-reverse">
-          <LanguageSwitcherSimple />
-          <a href={`tel:${CONTACT_INFO.phoneRaw}`} className="p-2 rounded-full transition-colors bg-gold/10 text-gold">
-            <Phone size={20} />
-          </a>
-          <button
-            onClick={() => setIsMobileMenuOpen(true)}
-            className="text-gold"
-          >
-            <Menu size={28} />
-          </button>
+          {/* Mobile Toggle */}
+          <div className="lg:hidden flex items-center space-x-4 space-x-reverse">
+            <LanguageSwitcherSimple />
+            <a href={`tel:${CONTACT_INFO.phoneRaw}`} className="p-2 rounded-full transition-colors bg-gold/10 text-gold">
+              <Phone size={20} />
+            </a>
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="text-gold"
+            >
+              <Menu size={28} />
+            </button>
+          </div>
         </div>
       </div>
 
