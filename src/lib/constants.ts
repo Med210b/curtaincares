@@ -1,7 +1,7 @@
 export const LOGO_URL = "https://res.cloudinary.com/dlyhuwdrw/image/upload/v1785277090/ihaj6yehp0kfpxysvgx5.png";
 
 export const IMAGES = {
-  hero: "/src/assets/images/hero_luxury_interior_1783502029527.jpg",
+  hero: "https://res.cloudinary.com/dlyhuwdrw/image/upload/v1785337415/z4smadvjlxpg2huwxpe0.png",
   serviceFabric: "/src/assets/images/service_fabric_care_1783502042045.jpg",
   hotel: "https://res.cloudinary.com/dlyhuwdrw/image/upload/v1785236158/d20qgqfyiofqjahvd30c.png",
 };
