@@ -18,7 +18,6 @@ export default function Contact() {
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [errorType, setErrorType] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,17 +25,21 @@ export default function Contact() {
     setErrorMessage("");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          access_key: "21329f68-383b-4af9-9e8e-8a22f81917cf",
+          ...formData
+        }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (data.success) {
         setStatus("success");
         setFormData({
           name: "",
@@ -48,7 +51,6 @@ export default function Contact() {
       } else {
         setStatus("error");
         setErrorMessage(data.message || "Something went wrong.");
-        setErrorType(data.errorType || "general");
       }
     } catch (error) {
       console.error("Submission error:", error);
@@ -264,20 +266,6 @@ export default function Contact() {
                         </p>
                         <p className="text-espresso/70 text-xs leading-relaxed">{errorMessage}</p>
                       </div>
-                      
-                      {errorType === "smtp_auth_disabled" && (
-                        <div className={`text-[10px] text-espresso/60 space-y-2 ${isAr ? 'text-right' : 'text-left'} bg-white/50 p-3 rounded-lg border border-red-500/10`}>
-                          <p className="font-bold text-red-600">
-                            {isAr ? "مطلوب إجراء من المسؤول:" : "Admin Action Required:"}
-                          </p>
-                          <ol className={`list-decimal ${isAr ? 'mr-4 ml-0' : 'ml-4'} space-y-1`}>
-                            <li>Go to <b>Microsoft 365 Admin Center</b>.</li>
-                            <li>Users {">"} Active users {">"} Select your account.</li>
-                            <li>Click <b>Mail</b> tab {">"} <b>Manage email apps</b>.</li>
-                            <li>Check <b>Authenticated SMTP</b> and Save.</li>
-                          </ol>
-                        </div>
-                      )}
 
                       <div className="pt-2 border-t border-red-500/10">
                         <a 
